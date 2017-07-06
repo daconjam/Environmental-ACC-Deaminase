@@ -2,7 +2,7 @@
 
 The objectives of this study are to assess the distribution, diversity, abundance, and phylogenetic distribution of 1-Aminocyclopropane-1-Carboxylate Deaminase (ACC-deamianse) in the envrionment. 
 
-This workflow was performed with QIIME, MUSCLE, R, and raxML on a Liunux-based machine.
+This workflow was performed with QIIME, MUSCLE, R, and raxML 8.2.10 on a Liunux-based machine.
 
 ## Getting data
 
@@ -76,13 +76,24 @@ This produces only a list of ascession numbers and the name that corresponds to 
 
 ## Phylogentic Analyses
 
-FIrst, we'll align our rep set with MUSCLE 3.8.31.
+First, we'll align our rep set with MUSCLE 3.8.31.
 
 ```
 muscle -out rep_set_aligned -in acc_rep_set.fna
 ```
 
 Next we'll catenate our rep set with a set of ACC sequences from UniProt. This sequence set is about ~2700 sequence from bacteria, archaea, and eukaryotes (cult_nulc_filt.fna).
+
+```
+cat acc_rep_set.fna cult_nulc_filt.fna > rep_cult_comb.fna
+```
+
+Align the full file with MUSCLE
+
+```
+muscle -out full_aligned -in rep_cult_comb.fna
+```
+
 
 ## Making figures & Statistics
 
