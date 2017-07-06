@@ -74,6 +74,16 @@ https://www.ncbi.nlm.nih.gov/nuccore/?term=%22environmental+samples%22%5Borganis
 This produces only a list of ascession numbers and the name that corresponds to the ascession number. We want to map this data back to a taxonomic assignment. The details of which can be found in my GitHub repo (BLAST-taxonomy). 
 
 
+## Phylogentic Analyses
+
+FIrst, we'll align our rep set with MUSCLE 3.8.31.
+
+```
+muscle -out rep_set_aligned -in acc_rep_set.fna
+```
+
+Next we'll catenate our rep set with a set of ACC sequences from UniProt. This sequence set is about ~2700 sequence from bacteria, archaea, and eukaryotes (cult_nulc_filt.fna).
+
 ## Making figures & Statistics
 
 We'll first start off by making a map that has all the studies plotted on a map of the earth. 
