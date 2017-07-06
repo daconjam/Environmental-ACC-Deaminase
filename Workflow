@@ -21,4 +21,41 @@ This leaves us with 4 files:
 
 ## Scripts
 
-First thing we need to do is purge the dataset of non-ACC deaminase sequences. Sequences commonly 
+First thing we need to do is purge the dataset of non-ACC deaminase sequences. These are seqeuences like "hypothetical protein" or "ACC cysteine residue". These aren't true ACC deaminase and will affect our analysis. 
+
+We'll use QIIME's 'filter_fasta.py' command to do this paired with a list of bad sequence identifires (can get from metadata file).
+
+```
+filter_fasta.py -n -i full_nulc.fasta -s not_acc_seqs.txt -o filted_nulc.fasta
+```
+
+If we do grep we can see we lost about ~7k sequences.
+
+```
+grep -c ">" full_nulc.fasta
+157,730
+
+grep -c ">" filted_nulc.fasta
+150,831
+```
+
+```
+pick_otus.py -s 0.85 -m swarm -i filted_nulc.fasta -o 85_otus
+```
+
+```
+pick_rep_set.py -i 85_otus/filted_nulc_otus.txt -o acc_rep_set.fna -f filted_nulc.fasta
+grep -c ">" acc_rep_set.fna
+26,297
+```
+
+```
+make_otu_table.py -i 85_otus/filted_nulc_otus.txt -o acc_otu_table.biom
+alpha_diversity.py -i acc_otu_table.biom -o acc_alpha.txt -m observed_species,shannon,singles
+add_alpha_to_mapping_file.py -m acc_map.txt -i acc_alpha.txt -o acc_alphaphied_map.txt
+```
+
+```
+
+```
+
