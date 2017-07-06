@@ -2,7 +2,7 @@
 
 The objectives of this study are to assess the distribution, diversity, abundance, and phylogenetic distribution of 1-Aminocyclopropane-1-Carboxylate Deaminase (ACC-deamianse) in the envrionment. 
 
-This workflow was performed with QIIME, MUSCLE, and raxML on a Liunux-based machine.
+This workflow was performed with QIIME, MUSCLE, R, and raxML on a Liunux-based machine.
 
 ## Getting data
 
@@ -72,4 +72,34 @@ blastn -query acc_rep_set.fna -max_target_seqs 1 -outfmt "6 qseqid sacc stitle p
 https://www.ncbi.nlm.nih.gov/nuccore/?term=%22environmental+samples%22%5Borganism%5D+OR+metagenomes%5Borgn%5D+OR+%22Unidentified%22+OR+%22clone%22
 
 ```
+
+## Making figures
+
+We'll first start off by making a map that has all the studies plotted on a map of the earth. 
+
+```
+library(ggplot2)
+library(readr)
+library(rworldmap)
+
+#read in data
+acc_map <- read_delim("~/acc_map.txt", "\t", escape_double = FALSE, trim_ws = TRUE)
+str(acc_map)
+
+#make columns of lat/long numeric
+acc_map$lat<-as.numeric(acc_map$lat)
+acc_map$long<-as.numeric(acc_map$long)
+
+#get world map data
+worldmap <- map_data("world")
+str(worldmap)
+
+# Plot entire world map with studies with ACC
+  ggplot(data = worldmap, aes(x = long, y = lat, group = group)) +
+  geom_polygon(colour = "grey", fill = "grey") +
+  theme_bw() +
+  geom_point(data = acc_map, aes(x = long, y = lat, fill=Ecosystem_Type, colour = Ecosystem_Type, group=Ecosystem_Type), size = 3)
+```
+
+
 
