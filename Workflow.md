@@ -102,5 +102,50 @@ str(worldmap)
   geom_point(data = acc_map, aes(x = long, y = lat, fill=Ecosystem_Type, colour = Ecosystem_Type, group=Ecosystem_Type), size = 3)
 ```
 
+Next we'll make a box and wisker plot of the abundance of ACC deaminase accross different environments.
 
+```
+library(readr)
+library(ggplot2)
 
+acc_abun <- read_delim("~/acc_abun.txt", "\t", escape_double = FALSE, trim_ws = TRUE)
+
+ggplot(acc_abun, aes(Order, Normalied_ACC, fill=Order))+
+  geom_boxplot()+
+  ylab("Normailzed ACC Abundance")+
+  xlab("")+
+  theme_bw()+
+  coord_cartesian(ylim=c(0,1))+
+  coord_flip()
+```
+
+Make a box and wisker plot of the alpha diversity of ACC deaminase in different environments.
+
+```
+library(readr)
+library(ggplot2)
+
+#read data
+acc_alphaphied_map2 <- read_delim("~/acc_alphaphied_map2.txt", "\t", escape_double = FALSE, trim_ws = TRUE)
+
+#plot OTUs observed
+ggplot(acc_alphaphied_map2, aes(Ecosystem_Type, otus_obs, fill=Ecosystem_Type))+
+  geom_boxplot()+
+  coord_flip()+
+  theme_bw()+
+  scale_y_log10()
+
+#plot singeltons
+ggplot(acc_alphaphied_map2, aes(Ecosystem_Type, singles, fill=Ecosystem_Type))+
+  geom_boxplot()+
+  coord_flip()+
+  theme_bw()+
+  scale_y_log10()
+
+#plot Shannon Diversity
+ggplot(acc_alphaphied_map2, aes(Ecosystem_Type, shannon, fill=Ecosystem_Type))+
+  geom_boxplot()+
+  coord_flip()+
+  theme_bw()+
+  scale_y_log10()
+```
