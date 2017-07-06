@@ -70,10 +70,11 @@ blastn -query acc_rep_set.fna -max_target_seqs 1 -outfmt "6 qseqid sacc stitle p
 #sequence.gi is a file of envrionmental sequences that was retrieved from NCBI Entrez:
 
 https://www.ncbi.nlm.nih.gov/nuccore/?term=%22environmental+samples%22%5Borganism%5D+OR+metagenomes%5Borgn%5D+OR+%22Unidentified%22+OR+%22clone%22
-
 ```
+This produces only a list of ascession numbers and the name that corresponds to the ascession number. We want to map this data back to a taxonomic assignment. The details of which can be found in my GitHub repo (BLAST-taxonomy). 
 
-## Making figures
+
+## Making figures & Statistics
 
 We'll first start off by making a map that has all the studies plotted on a map of the earth. 
 
