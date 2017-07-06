@@ -2,7 +2,7 @@
 
 The objectives of this study are to assess the distribution, diversity, abundance, and phylogenetic distribution of 1-Aminocyclopropane-1-Carboxylate Deaminase (ACC-deamianse) in the envrionment. 
 
-This workflow was performed with QIIME, MUSCLE, R, and raxML 8.2.10 on a Liunux-based machine.
+This workflow was performed with QIIME 1.8+, MUSCLE 2.8, R 3.4.1, and raxML 8.2.10 on a Liunux-based machine.
 
 ## Getting data
 
