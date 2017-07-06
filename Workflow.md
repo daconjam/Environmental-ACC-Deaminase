@@ -94,6 +94,11 @@ Align the full file with MUSCLE
 muscle -out full_aligned -in rep_cult_comb.fna
 ```
 
+## Beta Diversity
+
+```
+filter_samples_from_otu_table.py -i acc_otu_table.biom -o soil_plant_otu_table.biom -m acc_alphaphied_map2.txt -s 'Collapsed_Eco:Soil,Rhizosphere,Phylloplane,Plant,Rhizoplane'
+```
 
 ## Making figures & Statistics
 
