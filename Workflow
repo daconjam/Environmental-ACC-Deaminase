@@ -1,0 +1,24 @@
+# Workflow
+
+The objectives of this study are to assess the distribution, diversity, abundance, and phylogenetic distribution of 1-Aminocyclopropane-1-Carboxylate Deaminase (ACC-deamianse) in the envrionment. 
+
+This workflow was performed with QIIME, MUSCLE, and raxML on a Liunux-based machine.
+
+## Getting data
+
+Sequences were aggregated from JGI's IMG M server (https://img.jgi.doe.gov/cgi-bin/m/main.cgi) which aggregates data sequenced at JGI as well as from NCBI.
+
+Seqeunces were gathered by using the gene search function, searching for "1-Aminocyclopropane-1-Carboxylate Deaminase" and pulling 50 studies worth of data at a time. Metadata for each sequence pulled was also gathered.
+
+In addition, using the KEGG pathways option, I gathered abundance of ACC-deaminase in metagenomes as well as the single copy gene rplB to normalize ACC-deaminase abundance accross the studies. 
+
+This leaves us with 4 files:
+
+        1) full_nulc.fasta- ~150K ACC sequences
+        2) ACC_rplB_comb.txt- file with the abundance of ACC and rplB in metagenomes.
+        3) collated_metadata.txt- the metadata for all 150K sequences
+        4) collapsed_metadata.txt- the metadata for the studies data was pulled from, will use as a QIIME mapping file
+
+## Scripts
+
+First thing we need to do is purge the dataset of non-ACC deaminase sequences. Sequences commonly 
