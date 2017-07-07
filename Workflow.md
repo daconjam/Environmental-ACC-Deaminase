@@ -98,6 +98,18 @@ muscle -out full_aligned -in rep_cult_comb.fna
 
 ```
 filter_samples_from_otu_table.py -i acc_otu_table.biom -o soil_plant_otu_table.biom -m acc_alphaphied_map2.txt -s 'Collapsed_Eco:Soil,Rhizosphere,Phylloplane,Plant,Rhizoplane'
+
+beta_diversity.py -i soil_plant_otu_table.biom -o soil_plant_beta -m bray_curtis
+
+principal_coordinates.py -o soil_plant_beta/coords.txt -i soil_plant_beta/bray_curtis_soil_plant_otu_table.txt
+
+make_2d_plots.py -i soil_plant_beta/coords.txt -o soil_plant_beta/2d_plot -m acc_alphaphied_map2.txt
+
+
+group_significance.py -i acc_otu_table.biom -o cat_significance.txt -m acc_alphaphied_map2.txt -c 'Collapsed_Eco' --biom_samples_are_superset
+
+compare_categories.py -m acc_alphaphied_map2.txt --method=adonis -i soil_plant_beta/bray_curtis_soil_plant_otu_table.txt -c 'Collapsed_Eco' -o adonis_osil-plant
+
 ```
 
 ## Making figures & Statistics
